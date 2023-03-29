@@ -1,27 +1,31 @@
-import React from 'react'
-import { useFetch } from './2-useFetch'
+import React from "react";
+import { useFetch } from "./2-useFetch";
 
-
-const url = 'https://course-api.com/javascript-store-products'
+const url = "https://course-api.com/javascript-store-products";
 
 const Example = () => {
-  const { loading, products } = useFetch(url)  
+  const { loading, products } = useFetch(url);
   console.log(products);
   return (
     <div>
-      <h2>{loading ? 'loading...' : 'data'}</h2>
-      <ul>
-        {products.map((product) => <li key={product.id}>
-            <div>
-                <img src="https://images2.imgbox.com/89/59/6An8aqJL_o.jpeg"
- alt="" />
-                <h3> {product.fields.name}</h3>
-                <h4>{product.fields.price}</h4>
+      <h2>Custom React Hooks</h2>
+      <h2>{loading ? "loading..." : "products"}</h2>
+      <ul className="products">
+        {products.map((product) => (
+          <li key={product.id}>
+            <div className="product">
+              <img
+                src={product.fields.image[0].url}
+                alt={product.fields.name}
+              />
+              <h3> {product.fields.name}</h3>
+              <h4>{product.fields.price}</h4>
             </div>
-        </li>)}
+          </li>
+        ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Example
+export default Example;
